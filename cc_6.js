@@ -45,3 +45,58 @@ function calculateSubscriptionCost(plan, months, discount = 0) {
 // Test cases
 calculateSubscriptionCost("Basic", 6, 10);  // Expected output: Total Cost: $50
 calculateSubscriptionCost("Premium", 12, 0); // Expected output: Total Cost: $240
+
+
+// Task 5: Currency Conversion
+function convertCurrency(amount, exchangeRate) {
+    let converted = amount * exchangeRate;
+    console.log(`Converted Amount: $${converted.toFixed(2)}`);
+}
+
+// Test cases
+convertCurrency(100, 1.1); // Expected output: Converted Amount: $110.00
+convertCurrency(250, 0.85); // Expected output: Converted Amount: $212.50
+
+
+// Task 6: Higher-Order Function for Bulk Orders
+let orders = [200, 600, 1200, 450, 800];
+
+function applyBulkDiscount(orders, discountFunction) {
+    return orders.map(discountFunction);
+}
+
+let discountedOrders = applyBulkDiscount(orders, amount => amount > 500 ? amount * 0.9 : amount);
+console.log("Discounted Orders:", discountedOrders);
+
+
+// Task 7: Business Expense Tracker
+function createExpenseTracker() {
+    let totalExpenses = 0;
+    
+    return function(expense) {
+        totalExpenses += expense;
+        console.log(`Total Expenses: $${totalExpenses}`);
+    };
+}
+
+// Test cases
+let tracker = createExpenseTracker();
+tracker(200); // Expected output: Total Expenses: $200
+tracker(150); // Expected output: Total Expenses: $350
+
+
+// Task 8: Employee Promotion Evaluation
+function calculateYearsToPromotion(employeeLevel) {
+    if (employeeLevel >= 10) {
+        console.log("Years to Level 10: 0");
+        return 0;
+    }
+    
+    let years = 2 + calculateYearsToPromotion(employeeLevel + 1);
+    console.log(`Years to Level 10: ${years}`);
+    return years;
+}
+
+// Test cases
+calculateYearsToPromotion(7); // Expected output: "Years to Level 10: 6"
+calculateYearsToPromotion(5); // Expected output: "Years to Level 10: 10"
